@@ -29,7 +29,7 @@
 		"devices": {
 			"ios-emulator": {
 				"platformName": "iOS",
-				"platformVersion": "10.3",
+				"platformVersion": "11.4",
 				"deviceName": "iPhone Simulator",
 				"app": "./ios/build/Build/Products/Release-iphonesimulator/e2etest.app"
 			},

@@ -9,24 +9,17 @@ describe('Simple Appium Example', () => {
   beforeAll(async () => await driver.init(config));
   afterAll(async () => await driver.quit());
 
-  it('should toggle state', async () => {
-    expect(await driver.hasElementByAccessibilityId('text1')).toBe(false);
-    expect(await driver.hasElementByAccessibilityId('text2')).toBe(false);
-
-    await driver.elementByAccessibilityId('button1').click();
-    expect(await driver.hasElementByAccessibilityId('text1')).toBe(true);
-    expect(await driver.hasElementByAccessibilityId('text2')).toBe(false);
-
-    await driver.elementByAccessibilityId('button2').click();
-    expect(await driver.hasElementByAccessibilityId('text1')).toBe(false);
-    expect(await driver.hasElementByAccessibilityId('text2')).toBe(true);
+  it('should render correct view', async () => {
+    expect(await driver.hasElementByAccessibilityId('testview')).toBe(true);
+    expect(await driver.hasElementByAccessibilityId('notthere')).toBe(false);
   });
 
-  it('should find text by scrolling', async () => {
-    expect(await driver.hasElementByAccessibilityId('text3')).toBe(false);
-    const FAST = 2;
-    await driver.flick(0, -1000, FAST)
+  it('state should change when button click', async () => {
+    expect(await driver.hasElementByAccessibilityId('button')).toBe(true);
+    await driver.elementByAccessibilityId('button')
+      .click()
 
-    expect(await driver.hasElementByAccessibilityId('text3')).toBe(true);
+    const num = await driver.elementByAccessibilityId('counter').text();
+    expect(num).toBe('1');
   });
 });
